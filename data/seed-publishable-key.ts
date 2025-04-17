@@ -16,7 +16,7 @@ export default async function seedPublishableKey({container}: ExecArgs) {
 
     const db = knex({
       client: 'pg',
-      connection: process.env.DATABASE_URL,
+      connection: process.env.DATABASE_URL || 'postgres://medusa:medusa@localhost:5432/medusa',
     })
 
     await db.update({
