@@ -29,5 +29,5 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: |
-            yourdockerhubusername/medusajs-test:latest
-            yourdockerhubusername/medusajs-test:${{ github.ref_name }}
+            hassansalem/medusajs-test:latest
+            hassansalem/medusajs-test:${{ github.ref_name }}
