@@ -25,7 +25,7 @@ This repository contains a pre-configured **Docker image for MedusaJS v2** bundl
 ### Run from Docker Hub
 
 ```bash
-docker run -p 9000:9000 hassansalem/medusajs-test:latest
+docker run -p 9000:9000 hassansalem/docker-medusa-testing:latest
 ```
 
 Access Medusa server at:
