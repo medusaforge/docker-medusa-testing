@@ -2,8 +2,6 @@
 
 This repository contains a pre-configured **Docker image for MedusaJS v2** bundled with an internal **PostgreSQL server** and seeded test data. It's ideal for development, local testing, CI/CD, and plugin experiments.
 
----
-
 ## Features
 
 - Fully initialized **MedusaJS v2** instance
@@ -25,8 +23,6 @@ This repository contains a pre-configured **Docker image for MedusaJS v2** bundl
         - Additional promotions managed in campaigns:
             - `FLASH25` (25% off, added to Summer Sale 2023 campaign)
             - `WEEKEND30` (30% off, added then removed from Summer Sale 2023 campaign)
-
----
 
 ## Project Architecture
 
@@ -66,7 +62,6 @@ This project consists of several key components:
 5. Custom data is seeded (customers, promotions, publishable key)
 6. Medusa server starts
 
----
 
 ## How to Use
 
@@ -115,8 +110,6 @@ You can customize the build by setting variables:
 make IMAGE_NAME=my-medusa PORT=8000 all
 ```
 
----
-
 ## Seeding Process
 
 The Docker container automatically seeds the database with test data during initialization. Here's what gets seeded:
@@ -152,8 +145,6 @@ The Docker container automatically seeds the database with test data during init
 ### Publishable Key
 - Seeded using `seed-publishable-key.ts`
 - Sets a fake publishable key: `pk_0000000000000000000000000000000000000000000000000000000000000000`
-
----
 
 ## Customization
 
@@ -197,8 +188,6 @@ To customize the Medusa configuration:
 2. Modify `config/medusa-config.ts`
 3. Build your custom Docker image
 
----
-
 ## Versioning
 
 This image uses a dual-versioning system:
@@ -210,16 +199,12 @@ This image uses a dual-versioning system:
 
 This helps distinguish between different Docker builds of the same Medusa version.
 
----
-
 ## Use Cases
 
 - Local plugin or theme development
 - CI/CD and integration testing
 - MedusaJS learning sandbox
 - Backend service mocking
-
----
 
 ## Git Tag-Based Publishing
 
@@ -235,13 +220,9 @@ The resulting Docker image will be tagged as:
 - `latest`
 - `v2.7.0-1`
 
----
-
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
-
----
 
 ## Project Structure
 
