@@ -1,5 +1,6 @@
 import {
   createPromotionsWorkflow,
+  addOrRemoveCampaignPromotionsWorkflow,
 } from "@medusajs/medusa/core-flows";
 import {ExecArgs} from "@medusajs/framework/types";
 import {
@@ -105,8 +106,79 @@ export default async function seedPromotions({container}: ExecArgs) {
     logger.info(`Created fixed amount promotion with code: ${fixedPromotion[0].code}`);
     logger.info(`Created buy X get Y promotion with code: ${buyGetPromotion[0].code}`);
     logger.info(`Created campaign promotion with code: ${campaignPromotion[0].code}`);
-    
-    logger.info("Promotions seeded successfully");
+
+    // Create additional promotions for campaign management demonstration
+    const { result: additionalPromotion1 } = await createPromotionsWorkflow(container).run({
+      input: {
+        promotionsData: [{
+          code: "FLASH25",
+          type: "standard",
+          status: "active",
+          is_automatic: false,
+          application_method: {
+            type: "percentage",
+            target_type: "items",
+            allocation: "across",
+            value: 25,
+            currency_code: "usd"
+          }
+        }]
+      }
+    });
+
+    const { result: additionalPromotion2 } = await createPromotionsWorkflow(container).run({
+      input: {
+        promotionsData: [{
+          code: "WEEKEND30",
+          type: "standard",
+          status: "active",
+          is_automatic: false,
+          application_method: {
+            type: "percentage",
+            target_type: "items",
+            allocation: "across",
+            value: 30,
+            currency_code: "usd"
+          }
+        }]
+      }
+    });
+
+    logger.info(`Created additional promotion with code: ${additionalPromotion1[0].code}`);
+    logger.info(`Created additional promotion with code: ${additionalPromotion2[0].code}`);
+
+    // Use addOrRemoveCampaignPromotionsWorkflow to add promotions to the campaign
+    const campaignId = campaignPromotion[0].campaign_id;
+
+    if (campaignId) {
+      logger.info(`Adding promotions to campaign with ID: ${campaignId}`);
+
+      const { result: updatedCampaign } = await addOrRemoveCampaignPromotionsWorkflow(container).run({
+        input: {
+          id: campaignId,
+          add: [additionalPromotion1[0].id, additionalPromotion2[0].id],
+          remove: []
+        }
+      });
+
+      logger.info(`Added promotions to campaign: ${updatedCampaign.id}`);
+
+      // Demonstrate removing a promotion from the campaign
+      const { result: updatedCampaignAfterRemoval } = await addOrRemoveCampaignPromotionsWorkflow(container).run({
+        input: {
+          id: campaignId,
+          add: [],
+          remove: [additionalPromotion2[0].id]
+        }
+      });
+
+      logger.info(`Removed promotion from campaign: ${updatedCampaignAfterRemoval.id}`);
+      logger.info(`Campaign now has ${updatedCampaignAfterRemoval.promotions.length} promotions`);
+    } else {
+      logger.warn("Campaign ID not found, skipping campaign promotion management");
+    }
+
+    logger.info("Promotions and campaign management seeded successfully");
   } catch (error) {
     logger.error("Failed to seed promotions");
     logger.error(error);
