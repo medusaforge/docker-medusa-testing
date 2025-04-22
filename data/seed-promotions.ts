@@ -14,7 +14,7 @@ export default async function seedPromotions({container}: ExecArgs) {
 
   try {
     // Create a standard percentage discount promotion
-    const { result: standardPromotion } = await createPromotionsWorkflow(container).run({
+    const {result: standardPromotion} = await createPromotionsWorkflow(container).run({
       input: {
         promotionsData: [{
           code: "10PERCENTOFF",
@@ -33,7 +33,7 @@ export default async function seedPromotions({container}: ExecArgs) {
     });
 
     // Create a fixed amount discount promotion
-    const { result: fixedPromotion } = await createPromotionsWorkflow(container).run({
+    const {result: fixedPromotion} = await createPromotionsWorkflow(container).run({
       input: {
         promotionsData: [{
           code: "5DOLLAROFF",
@@ -52,7 +52,7 @@ export default async function seedPromotions({container}: ExecArgs) {
     });
 
     // Create a buy X get Y promotion
-    const { result: buyGetPromotion } = await createPromotionsWorkflow(container).run({
+    const {result: buyGetPromotion} = await createPromotionsWorkflow(container).run({
       input: {
         promotionsData: [{
           code: "BUY2GET1",
@@ -73,7 +73,7 @@ export default async function seedPromotions({container}: ExecArgs) {
     });
 
     // Create a promotion with campaign
-    const { result: campaignPromotion } = await createPromotionsWorkflow(container).run({
+    const {result: campaignPromotion} = await createPromotionsWorkflow(container).run({
       input: {
         promotionsData: [{
           code: "SUMMER2023",
@@ -108,7 +108,7 @@ export default async function seedPromotions({container}: ExecArgs) {
     logger.info(`Created campaign promotion with code: ${campaignPromotion[0].code}`);
 
     // Create additional promotions for campaign management demonstration
-    const { result: additionalPromotion1 } = await createPromotionsWorkflow(container).run({
+    const {result: additionalPromotion1} = await createPromotionsWorkflow(container).run({
       input: {
         promotionsData: [{
           code: "FLASH25",
@@ -126,7 +126,7 @@ export default async function seedPromotions({container}: ExecArgs) {
       }
     });
 
-    const { result: additionalPromotion2 } = await createPromotionsWorkflow(container).run({
+    const {result: additionalPromotion2} = await createPromotionsWorkflow(container).run({
       input: {
         promotionsData: [{
           code: "WEEKEND30",
@@ -153,7 +153,7 @@ export default async function seedPromotions({container}: ExecArgs) {
     if (campaignId) {
       logger.info(`Adding promotions to campaign with ID: ${campaignId}`);
 
-      const { result: updatedCampaign } = await addOrRemoveCampaignPromotionsWorkflow(container).run({
+      const {result: updatedCampaign} = await addOrRemoveCampaignPromotionsWorkflow(container).run({
         input: {
           id: campaignId,
           add: [additionalPromotion1[0].id, additionalPromotion2[0].id],
@@ -164,7 +164,7 @@ export default async function seedPromotions({container}: ExecArgs) {
       logger.info(`Added promotions to campaign: ${updatedCampaign.id}`);
 
       // Demonstrate removing a promotion from the campaign
-      const { result: updatedCampaignAfterRemoval } = await addOrRemoveCampaignPromotionsWorkflow(container).run({
+      const {result: updatedCampaignAfterRemoval} = await addOrRemoveCampaignPromotionsWorkflow(container).run({
         input: {
           id: campaignId,
           add: [],

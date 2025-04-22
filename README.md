@@ -253,8 +253,7 @@ This project is licensed under the [MIT License](LICENSE).
 │   ├── seed-promotions.ts       # Script to seed promotion data
 │   └── seed-publishable-key.ts  # Script to seed publishable key
 ├── scripts/
-│   ├── develop.sh               # Container entrypoint script
-│   └── seed.sh                  # Script to run all seed scripts
+│   └── develop.sh               # Container entrypoint script that handles seeding
 ├── Dockerfile                   # Docker image definition
 ├── Makefile                     # Build automation
 ├── LICENSE                      # MIT License

@@ -20,6 +20,8 @@ build:
 .PHONY: run
 run:
 	@echo "Running Docker container $(CONTAINER_NAME) on port $(PORT)..."
+	-docker stop $(CONTAINER_NAME) >/dev/null 2>&1
+	-docker rm $(CONTAINER_NAME) >/dev/null 2>&1
 	docker run -d --name $(CONTAINER_NAME) -p $(PORT):$(PORT) $(IMAGE_NAME):$(IMAGE_TAG)
 	@echo "Medusa is now running at http://localhost:$(PORT)"
 

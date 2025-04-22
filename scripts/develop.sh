@@ -30,5 +30,9 @@ echo "Seeding fake publishable key..."
 npx medusa exec src/scripts/seed-publishable-key.ts
 echo "Finished fake publishable key seeding"
 
+echo "Seeding Promotions..."
+npx medusa exec src/scripts/seed-promotions.ts
+echo "Finished Promotions seeding"
+
 echo "Starting Medusa..."
 npx medusa develop
