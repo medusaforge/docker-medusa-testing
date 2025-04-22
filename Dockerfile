@@ -31,6 +31,7 @@ COPY ./config/medusa-config.ts /app/medusa/medusa-config.ts
 
 COPY ./data/seed-customers.ts /app/medusa/src/scripts/
 COPY ./data/seed-publishable-key.ts /app/medusa/src/scripts/
+COPY ./data/seed-promotions.ts /app/medusa/src/scripts/
 
 # Make entrypoint executable
 RUN chmod +x /app/develop.sh

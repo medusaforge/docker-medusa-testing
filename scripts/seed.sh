@@ -15,4 +15,8 @@ echo "Seeding Customers..."
 npx medusa exec src/scripts/seed-customers.ts
 echo "Finished Customers seeding"
 
+echo "Seeding Promotions..."
+npx medusa exec src/scripts/seed-promotions.ts
+echo "Finished Promotions seeding"
+
 echo "Finished seeding"

@@ -17,6 +17,11 @@ This repository contains a pre-configured **Docker image for MedusaJS v2** bundl
         - Password: `password`
     - **Fake publishable key**:
         - `pk_0000000000000000000000000000000000000000000000000000000000000000`
+    - **Promotions**:
+        - Standard percentage discount: `10PERCENTOFF` (10% off)
+        - Fixed amount discount: `5DOLLAROFF` ($5 off)
+        - Buy X get Y promotion: `BUY2GET1` (buy 2 get 1 free)
+        - Campaign promotion: `SUMMER2023` (15% off, part of Summer Sale 2023 campaign)
 
 ---
 
