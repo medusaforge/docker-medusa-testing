@@ -8,6 +8,9 @@ until pg_isready -h localhost -p 5432 -U medusa; do
   sleep 1
 done
 
+export PGPASSWORD=medusa
+
+if [[ "$MODE" != "prod" ]]; then
 export DATABASE_URL=$DATABASE_URL || 'postgres://medusa:medusa@localhost:5432/medusa'
 
 echo "Running migrations..."
@@ -33,6 +36,12 @@ echo "Finished fake publishable key seeding"
 echo "Seeding Promotions..."
 npx medusa exec src/scripts/seed-promotions.ts
 echo "Finished Promotions seeding"
+
+elif [[ "$MODE" == "prod" ]]; then
+  echo "Importing database"
+  export PGPASSWORD=medusa
+  psql -U medusa -h localhost -d medusa < /app/data-dump/medusa-data.sql
+fi
 
 echo "Starting Medusa..."
 npx medusa develop

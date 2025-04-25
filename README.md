@@ -84,20 +84,29 @@ Login using the seeded credentials.
 This project includes a Makefile to simplify Docker operations:
 
 ```bash
-# Build and run the container (default)
+# Build and run the container in dev mode (default)
 make
+
+# Build and run the container in non-dev mode
+make non-dev
 
 # Only build the Docker image
 make build
 
-# Only run the container (if already built)
+# Only run the container in dev mode (if already built)
 make run
+
+# Only run the container in non-dev mode (if already built)
+make run-non-dev
 
 # Stop and remove the container
 make stop
 
 # Clean up container and image
 make clean
+
+# Extract a fresh copy of the container DB to data-dump/medusa-data.sql
+make exportdata
 
 # Show help information
 make help
@@ -109,6 +118,11 @@ You can customize the build by setting variables:
 # Example: Custom image name and port
 make IMAGE_NAME=my-medusa PORT=8000 all
 ```
+
+#### Dev vs Non-Dev Mode
+
+- **Dev Mode**: Initializes the database with migrations and seeds test data (customers, promotions, etc.)
+- **Non-Dev Mode**: Imports a pre-configured database dump from `data-dump/medusa-data.sql` for faster startup
 
 ## Seeding Process
 

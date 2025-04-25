@@ -36,10 +36,15 @@ COPY ./data/seed-promotions.ts /app/medusa/src/scripts/
 # Make entrypoint executable
 RUN chmod +x /app/develop.sh
 
+COPY ./data-dump/medusa-data.sql /app/data-dump/medusa-data.sql
+
 # Set working directory to medusa app
 WORKDIR /app/medusa
 
 # Expose Medusa port
 EXPOSE 9000
+
+ARG MODE=prod
+ENV MODE=$MODE
 
 ENTRYPOINT ["/app/develop.sh"]
